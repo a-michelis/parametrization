@@ -38,4 +38,4 @@ jobs:
       run: dotnet pack ${{ env.CSPROJ_FILE }} --no-restore --no-build --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ${{ env.PACK_DIR }}
       
     - name: 'Pushing project to nuget.org'
-      run: dotnet nuget push ${{ env.PACK_DIR }}\*.nupkg --api-key ${{ env.API_TOKEN }} --source ${{ env.NUGET_SOURCE }}
+      run: dotnet nuget push ${{ env.PACK_DIR }}\*.nupkg --api-key ${{ env.API_KEY }} --source ${{ env.NUGET_SOURCE }}
