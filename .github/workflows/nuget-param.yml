@@ -1,0 +1,41 @@
+name: "Deploy AndreasMichelis.Parametrization to nuget.pkg.github.com/examKitchen"
+
+on : 
+  push:
+    branches : [ "main" ]
+
+env :
+  CSPROJ_FILE: 'parametrization\parametrization.csproj'
+  PACK_DIR: '${{ github.workspace }}\nuget_publish'
+  API_KEY: ${{ secrets.NUGET_KEY }} 
+  NUGET_SOURCE : 'https://nuget.pkg.github.com/examKitchen/index.json'
+  
+jobs:
+  deploy:
+    name: 'Package Release'
+    runs-on: 'windows-latest'
+    if: ${{ contains(github.event.head_commit.message, '#release') }}
+    steps:
+    
+    - name : 'Checkout'
+      uses: actions/checkout@v2
+      
+    - name : 'Install dotnet'
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+      
+    - name: 'Creating Output Directory'
+      run: mkdir ${{ env.PACK_DIR }}
+      
+    - name: "Restoring project references"
+      run: dotnet restore ${{ env.CSPROJ_FILE }}
+      
+    - name: 'Building project'
+      run: dotnet build ${{ env.CSPROJ_FILE }} --no-restore --configuration Release
+            
+    - name: 'Packing project'
+      run: dotnet pack ${{ env.CSPROJ_FILE }} --no-restore --no-build --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ${{ env.PACK_DIR }}
+      
+    - name: 'Pushing project to nuget.org'
+      run: dotnet nuget push ${{ env.PACK_DIR }}\*.nupkg -k ${{ env.API_TOKEN }} -s ${{ env.NUGET_SOURCE }}
