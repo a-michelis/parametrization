@@ -5,7 +5,7 @@ on :
     branches : [ "main" ]
 
 env :
-  CSPROJ_FILE: 'parametrization\parametrization.csproj'
+  CSPROJ_FILE: 'Parametrization\Parametrization.csproj'
   PACK_DIR: '${{ github.workspace }}\nuget_publish'
   API_KEY: ${{ secrets.NUGET_KEY }} 
   NUGET_SOURCE : 'https://nuget.pkg.github.com/examKitchen/index.json'
