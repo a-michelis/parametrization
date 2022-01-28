@@ -30,6 +30,7 @@ namespace AndreasMichelis.Parametrization.Attributes
             else if (paramType == typeof(float))  Converter = new FloatParameterConverter();
             else if (paramType == typeof(double)) Converter = new DoubleParameterConverter();
             else if (paramType == typeof(string)) Converter = new StringParameterConverter();
+            else if (paramType.IsEnum)            Converter = new EnumParameterConverter(paramType);
             else                                  Converter = new JsonParameterConverter(paramType);
 
         }
@@ -55,6 +56,7 @@ namespace AndreasMichelis.Parametrization.Attributes
             else if (paramType == typeof(float))  defaultConverter = new FloatParameterConverter();
             else if (paramType == typeof(double)) defaultConverter = new DoubleParameterConverter();
             else if (paramType == typeof(string)) defaultConverter = new StringParameterConverter();
+            else if (paramType.IsEnum)            defaultConverter = new EnumParameterConverter(paramType);
             else                                  defaultConverter = new JsonParameterConverter(paramType);
 
             if (!converterType.IsAssignableTo(typeof(ParameterConverter)))

@@ -168,22 +168,45 @@ namespace ParametrizationTests
             Console.WriteLine("With GetParameter: " + obj.GetParameter("DefaultString"));
             Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("DefaultString")); 
             
+            Console.WriteLine("\n### Printing the default value of \"Test\" #######################\n");
+
+            Console.WriteLine("With GetParameter: " + obj.GetParameter("Test"));
+            Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("Test")); 
+
+
             Console.WriteLine("\n### Setting the default value of \"DefaultString\" ###############\n");
 
             obj.SetParameter("DefaultString", "Test string 1");
+
+            Console.WriteLine("\n### Setting the default value of \"Test\" ########################\n");
+
+            obj.SetParameter("Test", TestType.Type4);
             
             Console.WriteLine("\n### Printing the value of \"DefaultString\" #####################\n");
 
             Console.WriteLine("With GetParameter: " + obj.GetParameter("DefaultString"));
             Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("DefaultString")); 
             
+            Console.WriteLine("\n### Printing the default value of \"Test\" #######################\n");
+
+            Console.WriteLine("With GetParameter: " + obj.GetParameter("Test"));
+            Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("Test"));  
+            
             Console.WriteLine("\n### Parsing the default value of \"DefaultString\" ###############\n");
             obj.ParseParameter("DefaultString", "Test String 2");
+            
+            Console.WriteLine("\n### Parsing the default value of \"Test\" ########################\n");
+            obj.ParseParameter("Test", "Type3");
             
             Console.WriteLine("\n### Printing the value of \"DefaultString\" ######################\n");
 
             Console.WriteLine("With GetParameter: " + obj.GetParameter("DefaultString"));
-            Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("DefaultString")); 
+            Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("DefaultString"));
+            
+            Console.WriteLine("\n### Printing the default value of \"Test\" #######################\n");
+
+            Console.WriteLine("With GetParameter: " + obj.GetParameter("Test"));
+            Console.WriteLine("With SerializeParameter: " + obj.SerializeParameter("Test"));   
         }
     }
 }
