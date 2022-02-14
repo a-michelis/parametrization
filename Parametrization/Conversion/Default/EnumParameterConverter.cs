@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace AndreasMichelis.Parametrization.Conversion.Default
 {
@@ -30,14 +31,19 @@ namespace AndreasMichelis.Parametrization.Conversion.Default
                 : DefaultValue();
         }
 
-        public override bool CanParse(string value)
+        public override bool CanParse(string value, out string errorMessage)
         {
-            if (int.TryParse(value, out var i) && _allValues.Any(x => x.Id == i))
+            errorMessage = "";
+            if (int.TryParse(value, out var i))
             {
-                return true;
+                if (_allValues.Any(x => x.Id == i)) return true;
+                errorMessage = $"Value {i} does not have a corresponding enum entry";
+                return false;
             }
 
-            return _allValues.Any(x => x.Name == value);
+            var ret = _allValues.Any(x => x.Name == value);
+            if (!ret) errorMessage = $"No equivalent of '{value}' found";
+            return ret;
         }
 
         public override string Serialize(object value)

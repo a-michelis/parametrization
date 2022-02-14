@@ -29,7 +29,7 @@ namespace AndreasMichelis.Parametrization.Conversion
         /// </summary>
         /// <param name="value">The desired serialized value</param>
         /// <returns>True if the test-parsing was successful, false otherwise</returns>
-        public abstract bool CanParse(string value);
+        public abstract bool CanParse(string value, out string errorMessage);
 
         /// <summary>
         /// Retrieves or recreates the Output Type's default Value

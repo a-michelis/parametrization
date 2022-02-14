@@ -10,9 +10,9 @@
 	<Company>University of Peloponnese</Company>
 	<Description>An abstract class that provides classes with parametrization using specific attributes</Description>
 	<Copyright>Copyright (C) 2022, Andreas Michelis</Copyright>
-	<Version>1.0.0.1</Version>
-	<AssemblyVersion>1.0.0.1</AssemblyVersion>
-	<FileVersion>1.0.0.1</FileVersion>
+	<Version>1.0.0.2</Version>
+	<AssemblyVersion>1.0.0.2</AssemblyVersion>
+	<FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

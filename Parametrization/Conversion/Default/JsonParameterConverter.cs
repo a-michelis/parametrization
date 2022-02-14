@@ -40,13 +40,16 @@ namespace AndreasMichelis.Parametrization.Conversion.Default
             }
         }
 
-        public override bool CanParse(string value)
+        public override bool CanParse(string value, out string errorMessage)
         {
+            errorMessage = "";
             try
             {
                 var jObj = JToken.Parse(value);
                 var op = jObj.ToObject(OutputType);
-                return op is not null;
+                if (op is not null && OutputType.IsInstanceOfType(op)) return true;
+                errorMessage = "The provided string does not resemble a valid Json struct"
+                return false;
             }
             catch
             {

@@ -1,4 +1,5 @@
-﻿using AndreasMichelis.Parametrization.Attributes;
+﻿using AndreasMichelis.Parametrization;
+using AndreasMichelis.Parametrization.Attributes;
 
 namespace ParametrizationTests.paramObjects
 {
@@ -7,7 +8,7 @@ namespace ParametrizationTests.paramObjects
         Type1, Type2, Type3, Type4, Type5
     }
 
-    public class ParObj5 : ParObj3
+    public class ParObj5 : ParametricObject
     {
         [ParameterDefinition(typeof(string), "A string Parameter for testing purposes of ParObj5", "me lene popi")]
         public string DefaultString { get; set; }
