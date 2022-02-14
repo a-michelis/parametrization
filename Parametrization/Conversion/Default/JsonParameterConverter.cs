@@ -48,7 +48,7 @@ namespace AndreasMichelis.Parametrization.Conversion.Default
                 var jObj = JToken.Parse(value);
                 var op = jObj.ToObject(OutputType);
                 if (op is not null && OutputType.IsInstanceOfType(op)) return true;
-                errorMessage = "The provided string does not resemble a valid Json struct"
+                errorMessage = "The provided string does not resemble a valid Json struct";
                 return false;
             }
             catch
